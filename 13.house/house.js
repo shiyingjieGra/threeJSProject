@@ -4,6 +4,8 @@ import sideWall from './side-wall.js';
 import behindWall from './behind-wall.js';
 import frontWall from './front-wall.js';
 import roof from './roof.js';
+import doorstep from './doorstep.js';
+import grass from './grass.js'
 
 const house = new THREE.Group();
 
@@ -33,6 +35,9 @@ house.add(behindWall);
 house.add(frontWall);
 house.add(roof);
 house.add(roof2);
+
+house.add(doorstep);
+house.add(grass);
 
 
 export default house;

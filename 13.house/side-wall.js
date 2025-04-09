@@ -14,9 +14,16 @@ windowPath.lineTo(-2400, 1600);
 windowPath.lineTo(-2400, 400);
 shape.holes.push(windowPath);
 
+const texture = new THREE.TextureLoader().load('./zhuan.jpg');
+texture.wrapS = THREE.RepeatWrapping;
+texture.wrapT = THREE.RepeatWrapping;
+texture.repeat.x = 0.0005;
+texture.repeat.y = 0.0005;
+texture.colorSpace = THREE.SRGBColorSpace;
+
 const geometry = new THREE.ExtrudeGeometry(shape, { depth: 100});
 
-const material = new THREE.MeshLambertMaterial({color: new THREE.Color('lightgrey')});
+const material = new THREE.MeshLambertMaterial({map: texture, aoMap: texture, side: THREE.FrontSide});
 
 const sideWall = new THREE.Mesh(geometry, material);
 
