@@ -2,6 +2,8 @@ import * as THREE from 'three';
 
 const group = new THREE.Group();
 
+const dataArr = [70, 20, 100, 40, 50];
+
 function createLine (type) {
   const points = [
     new THREE.Vector3(0, 0, 0),
@@ -61,11 +63,42 @@ function createBar (dataArr) {
     const material = new THREE.MeshBasicMaterial({ vertexColors: true, side: THREE.DoubleSide});
     bar.attributes.color = new THREE.BufferAttribute(new Float32Array(colors), 3)
     const mesh = new THREE.Mesh(bar, material);
-    mesh.position.set(10 + index * 20, dataArr[index] / 2, 0);
+    mesh.position.set(10 + index * 20 + 5, dataArr[index] / 2, 0);
     group.add(mesh);
   }
   return group;
 }
-group.add(createBar([70, 20, 100, 40, 50]));
+group.add(createBar(dataArr));
+
+function createCanvas(text) {
+  const canvas = document.createElement('canvas');
+  const w = canvas.width = 100;
+  const h = canvas.height = 100;
+
+  const c = canvas.getContext('2d');
+  c.translate(w/2, h/2);
+  c.font = 'normal 48px 宋体';
+  c.fillStyle = '#ffffff';
+  c.textBaseLine = 'middle';
+  c.textAlign = 'center';
+  c.fillText(text, 0, 0);
+  return canvas;
+}
+
+function createNum (dataArr) {
+  const group = new THREE.Group();
+  dataArr.forEach((item, index) => {
+    const texture = new THREE.CanvasTexture(createCanvas(item));
+    const geometry = new THREE.PlaneGeometry(10, 10);
+    const material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
+    const num = new THREE.Mesh(geometry, material);
+    num.position.y = item + 10;
+    num.position.x = 10 + index * 20 + 5;
+    group.add(num);
+  });
+  return group;
+}
+
+group.add(createNum(dataArr));
 
 export default group;
