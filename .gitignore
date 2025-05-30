@@ -1,14 +1,1 @@
-13.house/node_modules/
-14.scene-group/node_modules/
-15.light-helper/node_modules/
-16.vertex-normal/node_modules/
-17.geometry-color/node_modules/
-18.gradient-color-bar-chart/node_modules/
-19.gltf-model/node_modules/
-22.gltf-pipeline-test/node_modules/
-23.ray-caster/node_modules/
-24.post-processing/node_modules/
-25.all-pass/node_modules/
-26.sprite/node_modules/
-27.snowy-forest/node_modules/
-28.material-share/node_modules/
+node_modules/
